@@ -1,8 +1,7 @@
 # Task Management App
 
-Hello sir/madam, <br>
 This is a dynamic task management application which supports CRUD operations with having frontend and backend components. <br>
-It fullfills every conditions given in the machine test statement.
+##### It fullfills every conditions given in the machine test statement.
 
 ## Compatibility
 - OS - Windows 10 or higher
@@ -33,9 +32,7 @@ npm install -g nodemon
 ```
 nodemon index.js
 ```
-```
-cd ..
-```
+- Open Another Terminal and follow the below steps
 ```
 cd frontend
 ```
@@ -61,9 +58,7 @@ npm install -g nodemon
 ```
 nodemon index.js
 ```
-```
-cd ..
-```
+- Open Another Terminal and follow the below steps
 ```
 cd frontend
 ```
