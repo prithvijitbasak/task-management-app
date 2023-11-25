@@ -9,7 +9,7 @@ const DeletionConfirmationBox = () => {
             <span className="mx-2 text-white">
               <box-icon name="check"></box-icon>
             </span>
-            Data deleted successfully.
+            Task deleted successfully.
           </p>
         </div>
       </div>

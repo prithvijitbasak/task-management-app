@@ -105,8 +105,9 @@ app.put("/api/update", (req, res) => {
   res.send("Data successfully updated!");
 });
 
-app.delete("/api/delete", (req, res) => {
-  const index = req.body.index;
+app.post("/api/delete", (req, res) => {
+  const index = parseInt(req.body.index);
+  console.log(index);
   let existingData = [];
   if (fs.existsSync(dataFilePath)) {
     existingData = JSON.parse(fs.readFileSync(dataFilePath));
@@ -117,6 +118,30 @@ app.delete("/api/delete", (req, res) => {
     res.send("No data found to delete.");
   }
 });
+
+// unable to use the delete method as the index that is being passed 
+// from the frontend is getting as NaN or undefined on the other hand
+// the post method is working fine and there is no any error 
+app.delete("/api/delete", (req, res) => {
+  const index = parseInt(req.body.index);
+  console.log(index);
+  let existingData = [];
+
+  if (fs.existsSync(dataFilePath)) {
+    existingData = JSON.parse(fs.readFileSync(dataFilePath));
+    
+    if (index >= 0 && index < existingData.length) {
+      existingData.splice(index, 1);
+      fs.writeFileSync(dataFilePath, JSON.stringify(existingData, null, 2));
+      res.send("Data successfully deleted!");
+    } else {
+      res.send("Invalid index provided.");
+    }
+  } else {
+    res.send("No data found to delete.");
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

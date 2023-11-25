@@ -9,7 +9,7 @@ const UpdationConfirmationBox = () => {
             <span class="mx-2 text-white">
               <box-icon name="check"></box-icon>
             </span>
-            Data updated successfully.
+            Task updated successfully.
           </p>
         </div>
       </div>

@@ -19,7 +19,6 @@ const App = () => {
   const [confirmUpdation, setConfirmUpdation] = useState(false);
   const [confirmDeletion, setConfirmDeletion] = useState(false);
 
-
   const fetchData = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/data");
@@ -101,10 +100,11 @@ const App = () => {
     toggleVisibility();
   };
 
+
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:5000/api/delete`, {
-        index: deleteConfirmationIndex,
+      .post(`http://localhost:5000/api/delete`, {
+        index: deleteConfirmationIndex
       })
       .then(() => {
         fetchData();
@@ -118,6 +118,7 @@ const App = () => {
         console.error("Error deleting data: ", error);
       });
   };
+  
 
   useEffect(() => {
     fetchData();
@@ -147,7 +148,9 @@ const App = () => {
       {confirmDeletion && <DeletionConfirmationBox />}
       <div className="mx-auto px-4 py-8">
         <div className="flex items-center justify-between py-2">
-          <h1 className="text-xl font-bold mb-2">Task Management Application</h1>
+          <h1 className="text-xl font-bold mb-2">
+            Task Management Application
+          </h1>
           <button
             className="bg-blue-600 hover:bg-blue-700 hover:scale-105 text-white py-2 px-4 my-2 rounded-md flex items-center transition duration-200 active:scale-95"
             onClick={handleTaskClick}
@@ -186,34 +189,40 @@ const App = () => {
               <tbody id="tableBody">
                 {data.map((item, index) => (
                   <tr key={index}>
-                    <td className="text-center border px-4 py-2">{item.key}</td>
-                    <td className="text-center border px-4 py-2">
+                    <td className="text-center px-4 py-2 border border-b-0 border-r-1 border-black border-opacity-20">
+                      {item.key}
+                    </td>
+                    <td className="text-center px-4 py-2 border border-b-0 border-r-1 border-black border-opacity-20">
                       {item.title}
                     </td>
-                    <td className="text-center border px-4 py-2">
+                    <td className="text-center px-4 py-2 border border-b-0 border-r-1 border-black border-opacity-20">
                       {item.description}
                     </td>
-                    <td className="text-center border px-4 py-2">
+                    <td className="text-center px-4 py-2 border border-b-0 border-r-1 border-black border-opacity-20">
                       {item.dueDate}
                     </td>
-                    <td className="text-center border px-4 py-2">
+                    <td className="text-center px-4 py-2 border border-b-0 border-r-1 border-black border-opacity-20">
                       {item.status}
                     </td>
-                    <td className="text-center border px-4 py-2">
+                    <td className="text-center px-4 py-2 border border-b-0 border-r-1 border-black border-opacity-20">
                       <button
                         className="rounded bg-green-500 px-3 transition duration-300 hover:scale-110 active:scale-90 uppercase"
-                        onClick={() => handleEdit(index)}
+                        onClick={() => {
+                          handleEdit(index)
+                          console.log(index);
+                          }}
                       >
                         Edit
                       </button>
                     </td>
-                    <td className="text-center border px-4 py-2">
+                    <td className="text-center px-4 py-2 border border-b-0 border-r-1 border-black border-opacity-30">
                       <button
                         className="rounded bg-red-500 px-3 transition duration-300 hover:scale-110 active:scale-90 uppercase"
                         onClick={() => {
-                          setDeleteConfirmationIndex(index);
+                          // console.log(index);
                           setDeleteConfirmationVisibility(true);
-                          // console.log(deleteConfirmationIndex);
+                          setDeleteConfirmationIndex(index);
+                          console.log(deleteConfirmationIndex);
                         }}
                       >
                         Delete

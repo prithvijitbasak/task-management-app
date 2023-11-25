@@ -30,7 +30,7 @@ const TaskForm = (props) => {
 
   useEffect(() => {
     if(props.selectedTask) {
-      setTitle(props.selectedTask.description);
+      setTitle(props.selectedTask.title);
       setDescription(props.selectedTask.description);
       setDueDate(props.selectedTask.dueDate);
       setStatus(props.selectedTask.status);
@@ -71,6 +71,7 @@ const TaskForm = (props) => {
                   type="text"
                   id="title"
                   title="Title"
+                  placeholder="Title"
                   value={title}
                   onChange={(e) => {
                     setTitle(e.target.value);
@@ -90,7 +91,8 @@ const TaskForm = (props) => {
                   type="text"
                   required
                   id="description"
-                  title="Status"
+                  title="Description"
+                  placeholder="Description of the task...."
                   value={description}
                   onChange={(e) => {
                     setDescription(e.target.value);
@@ -110,6 +112,7 @@ const TaskForm = (props) => {
                   required
                   id="dueDate"
                   title="Due Date"
+                  placeholder="15/12/2023"
                   value={dueDate}
                   onChange={(e) => {
                     setDueDate(e.target.value);
@@ -128,7 +131,8 @@ const TaskForm = (props) => {
                   type="status"
                   required
                   id="status"
-                  title="status"
+                  title="Status"
+                  placeholder="Pending/Completed"
                   value={status}
                   onChange={(e) => {
                     setStatus(e.target.value);
