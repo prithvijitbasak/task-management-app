@@ -44,6 +44,9 @@ npm start
 md Task-Management-App
 ```
 ```
+cd Task-Management-App
+```
+```
 git clone https://github.com/prithvijitbasak/task-management-app
 ```
 ```
@@ -73,5 +76,7 @@ npm start
 Express.js and Node.js
 #### Frontend
 React.js, Tailwind CSS
+#### Database
+JSON file
 
 
